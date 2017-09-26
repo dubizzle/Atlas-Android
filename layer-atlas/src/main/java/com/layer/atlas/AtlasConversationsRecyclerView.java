@@ -37,6 +37,11 @@ import com.layer.sdk.messaging.Conversation;
 import com.squareup.picasso.Picasso;
 
 public class AtlasConversationsRecyclerView extends RecyclerView {
+
+    public void setAtlasConversationsAdapterCallback(AtlasConversationsAdapter.AtlasConversationsAdapterCallback atlasConversationsAdapterCallback) {
+        mAdapter.setAtlasConversationsAdapterCallback(atlasConversationsAdapterCallback);
+    }
+
     AtlasConversationsAdapter mAdapter;
     private ItemTouchHelper mSwipeItemTouchHelper;
 

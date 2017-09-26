@@ -38,6 +38,15 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConversationsAdapter.ViewHolder> implements AtlasBaseAdapter<Conversation>, RecyclerViewController.Callback {
+    public static interface AtlasConversationsAdapterCallback{
+        void onLoadingFinished();
+    }
+
+    public void setAtlasConversationsAdapterCallback(AtlasConversationsAdapterCallback atlasConversationsAdapterCallback) {
+        this.atlasConversationsAdapterCallback = atlasConversationsAdapterCallback;
+    }
+
+    private AtlasConversationsAdapterCallback atlasConversationsAdapterCallback;
     protected final LayerClient mLayerClient;
     protected final Picasso mPicasso;
     private final RecyclerViewController<Conversation> mQueryController;
@@ -307,6 +316,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryDataSetChanged");
         }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
+        }
     }
 
     @Override
@@ -316,6 +328,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryItemChanged. Position: " + position);
         }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
+        }
     }
 
     @Override
@@ -324,6 +339,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
 
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryItemRangeChanged. Position start: " + positionStart + " Count: " + itemCount);
+        }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
         }
     }
 
@@ -335,6 +353,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryItemInserted. Position: " + position);
         }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
+        }
     }
 
     @Override
@@ -345,6 +366,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryItemRangeInserted. Position start: " + positionStart + " Count: " + itemCount);
         }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
+        }
     }
 
     @Override
@@ -353,6 +377,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
 
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryItemRemoved. Position: " + position);
+        }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
         }
     }
 
@@ -363,6 +390,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryItemRangeRemoved. Position start: " + positionStart + " Count: " + itemCount);
         }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
+        }
     }
 
     @Override
@@ -371,6 +401,9 @@ public class AtlasConversationsAdapter extends RecyclerView.Adapter<AtlasConvers
 
         if (Log.isPerfLoggable()) {
             Log.perf("Conversations adapter - onQueryItemMoved. From: " + fromPosition + " To: " + toPosition);
+        }
+        if(atlasConversationsAdapterCallback!=null){
+            atlasConversationsAdapterCallback.onLoadingFinished();
         }
     }
 
